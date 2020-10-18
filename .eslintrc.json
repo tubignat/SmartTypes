@@ -1,0 +1,25 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "@smart-types"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "no-case-declarations": "off",
+        "dot-notation": "off",
+        "@smart-types/smart-types": "error",
+        "comma-dangle": "off"
+    }
+}
