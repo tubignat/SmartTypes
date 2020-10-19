@@ -27,6 +27,7 @@
       <option name="FOR_BRACE_FORCE" value="1" />
     </codeStyleSettings>
     <codeStyleSettings language="TypeScript">
+      <option name="RIGHT_MARGIN" value="140" />
       <option name="INDENT_CASE_FROM_SWITCH" value="false" />
       <option name="KEEP_SIMPLE_BLOCKS_IN_ONE_LINE" value="true" />
       <option name="KEEP_SIMPLE_METHODS_IN_ONE_LINE" value="true" />

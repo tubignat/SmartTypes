@@ -18,9 +18,8 @@ export function issueDriverLicense(age: Age) {
     return `age: ${age}`
 }
 
-issueDriverLicense(100 as Age)
+issueDriverLicense(100)
 issueDriverLicense(8)
-
 
 // #2: Explicit cast to a smart type
 const ag = 100 as Age
@@ -33,6 +32,8 @@ interface Driver {
 }
 
 const dr: Driver = {age: 100}
+function abcdf(driver: Driver) {}
+abcdf({age: 100})
 
 // #4: Class with a smart type field
 class Dr {
@@ -100,7 +101,7 @@ function myFunc3(): Age {
 }
 
 // #11: Smart typed identifier
-const validAge: Age = 80
+let validAge: Age = 80
 issueDriverLicense(validAge)
 
 // #12: Cast to a wrong type
@@ -116,7 +117,7 @@ issueDriverLicense(50 * 5)
 type Email = SmartType<typeof ValidateEmail>
 function ValidateEmail(email: any) {
     return {
-        isValid: RegExp("[a-zA-Z0-9-\.]+@[a-zA-Z0-9-.]+.[a-zA-Z0-9-.]+").test(email),
+        isValid: RegExp("^[a-zA-Z0-9-\.]+@[a-zA-Z0-9-\.]+\\.[a-zA-Z0-9-.]+$").test(email),
         message: "Email should look like name@site.com"
     }
 }
@@ -124,7 +125,7 @@ function ValidateEmail(email: any) {
 function createNewEmail(email: Email) {
 }
 
-createNewEmail("tubignat@gmail.com")
-createNewEmail("wrognEmil")
+createNewEmail("tub.ignat@gmail.com")
+createNewEmail("wrong@email")
 
 

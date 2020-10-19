@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.issueDriverLicense = void 0;
+var MySmartType = /** @class */ (function () {
+    function MySmartType() {
+    }
+    return MySmartType;
+}());
 function ValidateAge(age) {
     return {
         isValid: Number.isInteger(age) && age >= 18 && age <= 90,
@@ -19,6 +24,8 @@ var ag = 100;
 var ag3 = getNumber();
 var ag5 = getAge();
 var dr = { age: 100 };
+function abcdf(driver) { }
+abcdf({ age: 100 });
 // #4: Class with a smart type field
 var Dr = /** @class */ (function () {
     function Dr(age) {
@@ -30,6 +37,9 @@ var Dr = /** @class */ (function () {
     Dr.prototype.setAgeToSomeValues = function () {
         this.age = 100;
         this.age = 43;
+    };
+    Dr.prototype.getSomeAge = function () {
+        return 100;
     };
     return Dr;
 }());
@@ -72,4 +82,19 @@ var validAge = 80;
 issueDriverLicense(validAge);
 // #12: Cast to a wrong type
 issueDriverLicense(100);
+// #13: Math
+issueDriverLicense(50 + 50);
+issueDriverLicense(16 / 2);
+issueDriverLicense(50 - 50);
+issueDriverLicense(50 * 5);
+function ValidateEmail(email) {
+    return {
+        isValid: RegExp("^[a-zA-Z0-9-\.]+@[a-zA-Z0-9-\.]+\\.[a-zA-Z0-9-.]+$").test(email),
+        message: "Email should look like name@site.com"
+    };
+}
+function createNewEmail(email) {
+}
+createNewEmail("tub.ignat@gmail.com");
+createNewEmail("wrong@email");
 //# sourceMappingURL=test.js.map

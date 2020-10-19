@@ -1,5 +1,8 @@
 import {lintFile} from "./linter";
 import {readFileSync} from "fs";
+import * as path from "path";
 
 const sourceText = readFileSync("./src/test.ts").toString()
-lintFile("src/test.ts", sourceText)
+
+
+lintFile(path.resolve("src/test.ts"), sourceText)

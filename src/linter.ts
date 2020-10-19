@@ -1,5 +1,6 @@
 import * as ts from 'typescript'
 import {SymbolFlags, TypeChecker, TypeFlags} from 'typescript'
+import {getProgram, updateFile} from "./watcher";
 
 interface Error {
     message: string
@@ -69,6 +70,7 @@ function lint(sourceFile: ts.SourceFile, checker: TypeChecker, aliases: SmartTyp
                 .forEach(param => validateCast(param.node, param.smartType))
 
             break
+
         case ts.SyntaxKind.AsExpression:
             const typeId = checker.getTypeAtLocation(node).aliasSymbol?.["id"]
             const smartType = aliases.find(a => a.symbolId === typeId)
@@ -135,11 +137,9 @@ function lint(sourceFile: ts.SourceFile, checker: TypeChecker, aliases: SmartTyp
 }
 
 export function lintFile(fileName: string, sourceText: string): Error[] {
-    const program = ts.createProgram([fileName], {
-        target: ts.ScriptTarget.ES5,
-        module: ts.ModuleKind.CommonJS
-    })
+    updateFile(fileName, sourceText)
 
+    const program = getProgram()
     const checker = program.getTypeChecker()
 
     const errors: Error[] = []
