@@ -301,8 +301,8 @@ export function lintFile(fileName: string, sourceText: string): EslintError[] {
         lint(sourceFile, checker as TypeChecker, aliases, errors)
 
         return errors.map(e => {
-            const start = sourceFile.getLineAndCharacterOfPosition(skipWhitespaces(e.pos, sourceText))
-            const end = sourceFile.getLineAndCharacterOfPosition(skipWhitespaces(e.end, sourceText))
+            const start = sourceFile.getLineAndCharacterOfPosition(skipWhitespaces(e.pos, sourceText, true))
+            const end = sourceFile.getLineAndCharacterOfPosition(skipWhitespaces(e.end, sourceText, false))
 
             return {
                 message: e.message + " ",
@@ -323,11 +323,17 @@ export function lintFile(fileName: string, sourceText: string): EslintError[] {
     return []
 }
 
-function skipWhitespaces(pos: number, sourceText: string): number {
+function skipWhitespaces(pos: number, sourceText: string, isStart: boolean): number {
+    if (!isWhiteSpace(sourceText[pos])) {
+        return pos
+    }
+    
     let newPos = pos
     while (sourceText[newPos].trim() === "") {
-        newPos++
+        isStart ? newPos++ : newPos--
     }
 
-    return newPos
+    return isStart ? newPos : newPos + 1
 }
+
+const isWhiteSpace = (s: string) =>  s.trim() === ""

@@ -37,14 +37,10 @@ interface Driver {
     age: Age
 }
 
-type Drivert = {
-    age: Age
-}
-
-const dr: Driver = {age: 100} // error
-const dr2: Driver = {age: getAge()} // ok
-const dr3: Driver = {age: getNumber()} // error
-const drdrdr = {age: 100} as Driver // error
+const dr: Driver = { age: 100 } // error
+const dr2: Driver = { age: getAge() } // ok
+const dr3: Driver = { age: getNumber() } // error
+const drdrdr = { age: 100 } as Driver // error
 const validDr: Driver = {age: 80} // ok
 
 function abcdf(driver: Driver) {}
@@ -118,7 +114,7 @@ validdrdr.age2 = 100 // error
 
 // #5: Assignment to a smart typed variable
 
-const age: Age = 100 // error
+const age8789: Age = 100 // error
 
 const age123: Age = 100 as number // error
 
@@ -222,10 +218,12 @@ function myFuncArrow(): Age {
         return 100 // error
     }
 
-    return 100 // error
+    return 100    // error
 }
 
 // #11: Smart typed identifier
+let invalidAge: Age = 99
+
 let validAge: Age = 80
 issueDriverLicense(validAge) // ok
 
