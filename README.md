@@ -1,4 +1,4 @@
-A TypeScript plugin to define advanced types and use user-defined validation in compile time.
+A ESLint plugin to define advanced types in TypeScript and use user-defined validation in compile time.
 
 Examples:
 
